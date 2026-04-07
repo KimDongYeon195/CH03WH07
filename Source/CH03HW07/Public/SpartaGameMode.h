@@ -14,4 +14,6 @@ class CH03HW07_API ASpartaGameMode : public AGameMode
 {
 	GENERATED_BODY()
 	
+public:
+	ASpartaGameMode();
 };

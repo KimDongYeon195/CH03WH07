@@ -6,6 +6,10 @@
 #include "GameFramework/Pawn.h"
 #include "MyPawn.generated.h"
 
+class UCapsuleComponent;
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class CH03HW07_API AMyPawn : public APawn
 {
@@ -17,8 +21,17 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	USceneComponent* CapsuleComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MyPawn|Collision")
+	UCapsuleComponent* CapsuleComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MyPawn|Collision")
 	USkeletalMeshComponent* SkeletalMeshComp;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MyPawn|Camera")
+	USpringArmComponent* SpringArmComp;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MyPawn|Camera")
+	UCameraComponent* CameraComp;
 
 public:	
 	virtual void Tick(float DeltaTime) override;

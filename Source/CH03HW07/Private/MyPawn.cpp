@@ -5,7 +5,8 @@
 #include "Components/CapsuleComponent.h" //캡슐컴포넌트 헤더 추가
 #include "Camera/CameraComponent.h"//카메라컴포넌트 헤더 추가
 #include "GameFramework/SpringArmComponent.h" //스프링암컴포넌트 헤더 추가
-
+#include "EnhancedInputComponent.h"
+#include "MyPlayerController.h"
 AMyPawn::AMyPawn()
 {
  	
@@ -47,3 +48,11 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
+void AMyPawn::Move(const FInputActionValue& value)
+{	 
+	
+}	 
+void AMyPawn::Look(const FInputActionValue& value)
+{
+
+}

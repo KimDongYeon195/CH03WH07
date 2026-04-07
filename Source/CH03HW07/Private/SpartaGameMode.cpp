@@ -3,9 +3,10 @@
 
 #include "SpartaGameMode.h"
 #include "MyPawn.h"
+#include "MyPlayerController.h"
 
 ASpartaGameMode::ASpartaGameMode()
 {
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "GameMode");
 	DefaultPawnClass = AMyPawn::StaticClass();
+	PlayerControllerClass = AMyPlayerController::StaticClass();
 }

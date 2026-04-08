@@ -16,8 +16,7 @@ void AMyPlayerController::BeginPlay()
 	Super::BeginPlay();
 	if (ULocalPlayer* LocalPlayer = GetLocalPlayer()) //로컬 플레이어의 입력이나 화면을 관리하는 객체
 	{
-		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = //Subsystem이란 이름으로 UEnhancedInputLocalPlayerSubsystem가져오기
-			LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>()) //IMC를 추가 삭제 관리시스템
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>()) 
 		{
 			if (IMC)
 			{

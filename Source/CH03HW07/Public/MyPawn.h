@@ -9,6 +9,7 @@
 class UCapsuleComponent;
 class USpringArmComponent;
 class UCameraComponent;
+class UFloatingPawnMovement;
 struct FInputActionValue;
 
 UCLASS()
@@ -19,6 +20,8 @@ class CH03HW07_API AMyPawn : public APawn
 public:
 	AMyPawn();
 
+
+protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MyPawn|Collision")
 	UCapsuleComponent* CapsuleComp;
 
@@ -31,16 +34,21 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MyPawn|Camera")
 	UCameraComponent* CameraComp;
 
-protected:
-	virtual void BeginPlay() override;
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+	UFloatingPawnMovement* MovementComp;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UFUNCTION()
-	void Move(const FInputActionValue& value); //IA의 valuetype을 반환(현재 Axis2D)
-	UFUNCTION()								   //구조체, 클래스등은 크기가 커서 참조로 가져옴
+	UFUNCTION()								   
 	void Look(const FInputActionValue& value);
 
+	UFUNCTION()
+	void Move(const FInputActionValue& value); //입력바인딩 함수
+											   //IA의 valuetype을 반환(현재 Axis2D)
+	UPROPERTY(VisibleAnywhere,BluePrintReadWrite, Category = "Movement")
+	float MoveSpeed;
+	UPROPERTY(VisibleAnywhere, BluePrintReadWrite, Category = "Movement")
+	float RotationSpeed;
 public:	
 	virtual void Tick(float DeltaTime) override;
 

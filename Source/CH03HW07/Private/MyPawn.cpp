@@ -8,7 +8,6 @@
 #include "GameFramework/FloatingPawnMovement.h" //폰 클래스에 행동 제어(?)기능 추가
 #include "EnhancedInputComponent.h"
 #include "MyPlayerController.h"
-
 AMyPawn::AMyPawn()
 {
  	
@@ -44,22 +43,18 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	if (UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		if (IsValid(EnhancedInput) == true)
+		if (AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController()))
 		{
-			if (AMyPlayerController* PlayerController = Cast<AMyPlayerController>(GetController()))
+			if (PlayerController->IAMove)
 			{
-				if (PlayerController->IAMove)
-				{
-					EnhancedInput->BindAction(PlayerController->IAMove, ETriggerEvent::Triggered,
-						this, &AMyPawn::Move);
-				}
-				if (PlayerController->IALook)
-				{
-					EnhancedInput->BindAction(PlayerController->IALook, ETriggerEvent::Triggered,
-						this, &AMyPawn::Look);
-				}
+				EnhancedInput->BindAction(PlayerController->IAMove, ETriggerEvent::Triggered,
+					this, &AMyPawn::Move);
 			}
-
+			if (PlayerController->IALook)
+			{
+				EnhancedInput->BindAction(PlayerController->IALook, ETriggerEvent::Triggered,
+					this, &AMyPawn::Look);
+			}
 		}
 	}
 
